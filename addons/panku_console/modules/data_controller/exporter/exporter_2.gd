@@ -35,7 +35,7 @@ func create_rows_from_object(index:int):
 			row_types.append("read_only")
 			rows.append(create_ui_row_read_only(d))
 			continue
-		if d.usage == (PROPERTY_USAGE_SCRIPT_VARIABLE | PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_STORAGE):
+		if [PROPERTY_USAGE_SCRIPT_VARIABLE,PROPERTY_USAGE_EDITOR,PROPERTY_USAGE_STORAGE].all(func(flag): return d.usage & flag != 0):
 			if d.name.begins_with(BUTTON_PREFIX) and d.type == TYPE_STRING:
 				row_types.append("func_button")
 				rows.append(create_ui_row_func_button(d, obj))
