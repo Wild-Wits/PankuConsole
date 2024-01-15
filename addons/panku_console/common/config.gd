@@ -14,7 +14,17 @@ static func get_config() -> Dictionary:
 		var content = file.get_as_text()
 		var config:Dictionary = str_to_var(content)
 		if config: return config
-	return {}
+	return {
+			"general_settings": {
+				"window_blur_effect": true
+				},
+			"native_logger": {
+				"font_size": 14.0,
+				"screen_overlay": 1,
+				"screen_overlay_alpha": 0.3,
+				"screen_overlay_font_size": 13.0
+				}
+			}
 
 static func get_value(key:String, default:Variant) -> Variant:
 	return get_config().get(key, default)
