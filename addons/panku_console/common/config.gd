@@ -9,17 +9,7 @@ static func _get_config(file_path:String) -> Dictionary:
 		var content := file.get_as_text()
 		var config:Dictionary = str_to_var(content)
 		if config: return config
-	return {
-			"general_settings": {
-				"window_blur_effect": true
-				},
-			"native_logger": {
-				"font_size": 14.0,
-				"screen_overlay": 1,
-				"screen_overlay_alpha": 0.3,
-				"screen_overlay_font_size": 13.0
-				}
-			}
+	return {}
 
 # save user config to file
 static func set_config(config:Dictionary):
