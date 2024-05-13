@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=3 uid="uid://7aalynd5enrx"]
+
+[ext_resource type="Theme" uid="uid://bk18yfu0d77wk" path="res://addons/panku_console/res/panku_console_theme.tres" id="1_wq3gc"]
+[ext_resource type="Script" path="res://addons/panku_console/modules/crown_gambit/main_vbox.gd" id="3_b3nxr"]
+[ext_resource type="PackedScene" uid="uid://dyq4rjkkjs55d" path="res://addons/panku_console/common/smooth_scroll/smooth_scroll.tscn" id="3_uu2c2"]
+[ext_resource type="Script" path="res://addons/panku_console/modules/crown_gambit/group_inventory_add_item.gd" id="4_ayb5n"]
+[ext_resource type="Script" path="res://addons/panku_console/modules/crown_gambit/hero_pioche_card.gd" id="7_h2jck"]
+[ext_resource type="PackedScene" uid="uid://78evbpdhqe4b" path="res://addons/panku_console/modules/data_controller/exporter/row_group_button.tscn" id="9_fqqbk"]
+[ext_resource type="PackedScene" uid="uid://ds3hbsvvlvdyw" path="res://addons/panku_console/modules/data_controller/exporter/row_button.tscn" id="13_mc168"]
+
+[node name="crown_gambit" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wq3gc")
+
+[node name="SmoothScrollContainer" parent="." instance=ExtResource("3_uu2c2")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+follow_content = false
+
+[node name="GeneralVBoxContainer" type="VBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3_b3nxr")
+
+[node name="Group_Inventory" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" instance=ExtResource("9_fqqbk")]
+layout_mode = 2
+text = "Group Inventory"
+
+[node name="Group_Inventory_AddItem" type="HBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" node_paths=PackedStringArray("item_list", "add_button")]
+layout_mode = 2
+script = ExtResource("4_ayb5n")
+item_list = NodePath("ItemList")
+add_button = NodePath("AddItem")
+
+[node name="ItemList" type="OptionButton" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Group_Inventory_AddItem"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "option 1"
+popup/item_0/id = 0
+popup/item_1/text = "option 2"
+popup/item_1/id = 1
+popup/item_2/text = "option 3"
+popup/item_2/id = 2
+
+[node name="AddItem" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Group_Inventory_AddItem" instance=ExtResource("13_mc168")]
+layout_mode = 2
+text = "Add Item"
+
+[node name="Hero_Cards" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" instance=ExtResource("9_fqqbk")]
+layout_mode = 2
+text = "Hero Cards"
+
+[node name="Aliza" type="VBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" node_paths=PackedStringArray("skill_list", "add_button")]
+layout_mode = 2
+script = ExtResource("7_h2jck")
+hero = 1
+skill_list = NodePath("HBoxContainer/SkillList")
+add_button = NodePath("HBoxContainer/PiocheCard")
+
+[node name="HeroTitle" type="Label" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Aliza"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Aliza"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Aliza"]
+layout_mode = 2
+
+[node name="SkillList" type="OptionButton" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Aliza/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "option 1"
+popup/item_0/id = 0
+popup/item_1/text = "option 2"
+popup/item_1/id = 1
+popup/item_2/text = "option 3"
+popup/item_2/id = 2
+
+[node name="PiocheCard" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Aliza/HBoxContainer" instance=ExtResource("13_mc168")]
+layout_mode = 2
+text = "Draw skill card"
+
+[node name="Rollo" type="VBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" node_paths=PackedStringArray("skill_list", "add_button")]
+layout_mode = 2
+script = ExtResource("7_h2jck")
+hero = 0
+skill_list = NodePath("HBoxContainer/SkillList")
+add_button = NodePath("HBoxContainer/PiocheCard")
+
+[node name="HeroTitle" type="Label" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Rollo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Rollo
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Rollo"]
+layout_mode = 2
+
+[node name="SkillList" type="OptionButton" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Rollo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "option 1"
+popup/item_0/id = 0
+popup/item_1/text = "option 2"
+popup/item_1/id = 1
+popup/item_2/text = "option 3"
+popup/item_2/id = 2
+
+[node name="PiocheCard" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Rollo/HBoxContainer" instance=ExtResource("13_mc168")]
+layout_mode = 2
+text = "Draw skill card"
+
+[node name="Hael" type="VBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer" node_paths=PackedStringArray("skill_list", "add_button")]
+layout_mode = 2
+script = ExtResource("7_h2jck")
+hero = 2
+skill_list = NodePath("HBoxContainer/SkillList")
+add_button = NodePath("HBoxContainer/PiocheCard")
+
+[node name="HeroTitle" type="Label" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Hael"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Hael
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Hael"]
+layout_mode = 2
+
+[node name="SkillList" type="OptionButton" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Hael/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "option 1"
+popup/item_0/id = 0
+popup/item_1/text = "option 2"
+popup/item_1/id = 1
+popup/item_2/text = "option 3"
+popup/item_2/id = 2
+
+[node name="PiocheCard" parent="SmoothScrollContainer/HBoxContainer/Control/GeneralVBoxContainer/Hael/HBoxContainer" instance=ExtResource("13_mc168")]
+layout_mode = 2
+text = "Draw skill card"
+
+[editable path="SmoothScrollContainer"]

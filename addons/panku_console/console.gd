@@ -69,6 +69,7 @@ func _ready():
 		PankuModuleVariableTracker.new(),
 		PankuModuleAbout.new(),
 		PankuModuleSnakeGame.new(),
+		PankuModuleCrownGambit.new(),
 	]
 	module_manager.init_manager(self, modules)
 
